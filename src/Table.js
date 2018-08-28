@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 class Table extends Component {
   render() {
-    const { people } = this.props
+    const { people, removeCharacter } = this.props
+
     const TableHeader = () => { 
       return (
         <thead>
@@ -20,6 +21,7 @@ class Table extends Component {
           <tr key={i}>
             <td>{person.name}</td>
             <td>{person.job}</td>
+            <td><button onClick={() => props.removeCharacter(i)}>Delete</button></td>
           </tr>
         )
       })
@@ -34,7 +36,10 @@ class Table extends Component {
     return (
       <table>
         <TableHeader />
-        <TableBody people={people}/>  
+        <TableBody
+          people={people}
+          removeCharacter={removeCharacter}
+        />  
       </table>
     );
   }
