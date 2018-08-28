@@ -17,6 +17,12 @@ class App extends Component {
     })
   }
 
+  handleSubmit = (person) => {
+    this.setState({
+      people: [...this.state.people, person]
+    })
+  }
+
   render() {
     return (
       <div className="Container">
@@ -25,7 +31,7 @@ class App extends Component {
           people={this.state.people} 
           removeCharacter={this.removeCharacter}
         />
-        <Form />
+        <Form handleSubmit={this.handleSubmit} />
       </div>
     )
   }
