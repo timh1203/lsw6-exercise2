@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 class Table extends Component {
   render() {
+    const { people } = this.props
     const TableHeader = () => { 
       return (
         <thead>
@@ -13,25 +14,19 @@ class Table extends Component {
       );
     }
 
-    const TableBody = () => { 
+    const TableBody = (props) => { 
+      const people = props.people.map((person, i) => {
+        return (
+          <tr key={i}>
+            <td>{person.name}</td>
+            <td>{person.job}</td>
+          </tr>
+        )
+      })
+
       return (
         <tbody>
-          <tr>
-            <td>Charlie</td>
-            <td>Janitor</td>
-          </tr>
-          <tr>
-            <td>Mac</td>
-            <td>Bouncer</td>
-          </tr>
-          <tr>
-            <td>Dee</td>
-            <td>Aspiring actress</td>
-          </tr>
-          <tr>
-            <td>Dennis</td>
-            <td>Bartender</td>
-          </tr>
+          {people} 
         </tbody>
       );
     }
@@ -39,7 +34,7 @@ class Table extends Component {
     return (
       <table>
         <TableHeader />
-        <TableBody />  
+        <TableBody people={people}/>  
       </table>
     );
   }
